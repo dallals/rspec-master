@@ -28,6 +28,8 @@ class ArticlesController < ApplicationController
 
   def create
   	@article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
+    # @article.user_id = current_user.id 
 	if @article.save 
 		flash[:success] = "Article has been created"
   		# redirect_to article_path(@article)
@@ -50,7 +52,7 @@ class ArticlesController < ApplicationController
   end
 
   def require_same_user
-    
+
   end
 
   def article_params

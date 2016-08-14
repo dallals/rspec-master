@@ -11,8 +11,6 @@ RSpec.feature "Creating Article" do
 		fill_in "Password", with: @john.password
 		click_button "Sign in"
 
-		expect(page).to have_content("Signed in successfully.")
-		expect(page).to have_content("Signed in as #{@john.email}")
 
 	end
 	
@@ -26,6 +24,7 @@ RSpec.feature "Creating Article" do
 
 		expect(page).to have_content("Article has been created")
 		expect(page.current_path).to eq(articles_path)
+		expect(page).to have_content("Created by: #{@john.email}")
 	end
 	scenario "A user fails to create a new article" do
 		visit "/"

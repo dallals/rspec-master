@@ -3,17 +3,20 @@ require "rails_helper"
 RSpec.feature "Editing an Article" do
 
 	before do
-		@article = Article.create(title: "The article", description: "Body of the first article")
+		
 		@john = User.create(email: "john@example.com", password: "password")
+		login_as(@john)
+		@article = Article.create(title: "The article", description: "Body of the first article", user: @john)
 
-		visit "/"
-		click_link "Sign in"
-		fill_in "Email", with: @john.email
-		fill_in "Password", with: @john.password
-		click_button "Sign in"
 
-		expect(page).to have_content("Signed in successfully.")
-		expect(page).to have_content("Signed in as #{@john.email}")
+		# visit "/"
+		# click_link "Sign in"
+		# fill_in "Email", with: @john.email
+		# fill_in "Password", with: @john.password
+		# click_button "Sign in"
+
+		# expect(page).to have_content("Signed in successfully.")
+		# expect(page).to have_content("Signed in as #{@john.email}")
 
 	end
 
