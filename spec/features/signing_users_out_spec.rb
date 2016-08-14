@@ -1,12 +1,8 @@
 require "rails_helper"
 
-
-RSpec.feature "Deleting an Article" do 
-
-
+RSpec.feature "Signing out signed-in users" do 
 
 	before do
-		@article = Article.create(title: "The article", description: "Body of the first article")
 		@john = User.create(email: "john@example.com", password: "password")
 
 		visit "/"
@@ -20,15 +16,11 @@ RSpec.feature "Deleting an Article" do
 
 	end
 
-	scenario "A user deletes an article" do
-
+	scenario do 
 		visit "/"
-		click_link @article.title
-		click_link "Delete Article"
+		click_link "Sign Out"
+		expect(page).to have_content("Signed out successfully.")
 
-		expect(page).to have_content("Article was successfully deleted")
-		expect(current_path).to eq(articles_path)
 	end
-
 
 end
