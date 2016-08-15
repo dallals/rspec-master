@@ -45,7 +45,9 @@
 	<% end %>
 <br>
 	<div class='form-group'>
-
+		<div class="control-label col-sm-2">	
+			<%= f.label :body, 'New Comment' %>
+		</div>
 		<div class='col-md-8'>
 			<%= f.text_area :body, rows: 10, class: 'form-control', placeholder: 'Your comment' %>
 		</div>
